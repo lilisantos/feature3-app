@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { createMuiTheme, ThemeProvider} from '@material-ui/core';
+import Header from './components/navbar/Header';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from "react-router-dom";
+import Parent from './components/ParentPage'
+import Minder from './components/MinderPage'
+import Home from './components/HomePage'
 
-function App() {
+export default function App() {  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Header />
+        <div className="container mt-2" style={{ marginTop: 60 }}>
+
+          {/* Routes for menu */}
+          <Switch>           
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/parent">
+              <Parent />
+            </Route>
+            <Route path="/Minder">
+              <Minder />
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </ThemeProvider>
     </div>
   );
 }
 
-export default App;
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#ffffff"
+    },
+    secondary: {
+      main: "#00c5c0"
+    }
+  }
+});
+
