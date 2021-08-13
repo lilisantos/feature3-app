@@ -27,6 +27,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import CheckDays from "../components/CheckDays";
+import { Check } from '@material-ui/icons';
 
 
 //send request to back-end API to update availability
@@ -105,6 +107,7 @@ export default function ParentPage() {
                 <MenuItem value="Long term">Long term</MenuItem>
             </Select>      
         </FormControl>
+        <CheckDays />
         </div>
       </Container>
     </ThemeProvider>   

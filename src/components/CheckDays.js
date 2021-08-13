@@ -79,7 +79,7 @@ export default function CheckDays() {
             label="Sunday"
           />
         </FormGroup>
-        <FormHelperText>You can display an error</FormHelperText>
+       
       </FormControl>
     </div>
     </ThemeProvider>   
