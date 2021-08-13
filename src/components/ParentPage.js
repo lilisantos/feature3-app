@@ -31,6 +31,7 @@ import Grid from '@material-ui/core/Grid';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import CheckDays from "../components/CheckDays";
 
 
 //send request to back-end API to update availability
@@ -53,15 +54,22 @@ export default function ParentPage() {
   
     let [category, setCategory] = useState(' ');  
     const [details, setDetails] = useState(' ');
+    let [fullTimeDay, setFullTimeDay] = useState(' ');  
 
     const [error, setError] = useState(false);
     const [helperText, setHelperText] = useState('');
     let [isSubmitted, setIsSubmitted] = useState();
    
-    // Handle change on select field
+    // Handle change on select fields
     const handleChangeCategory = (event) => {
-      setCategory(event.target.value);      
+      setCategory(event.target.value);     
+      console.log("category: " + category); 
     }; 
+     // Handle change on select field
+     const handleChangeFullTime = (event) => {
+        setFullTimeDay(event.target.value); 
+        console.log("fullTimeDay: " + fullTimeDay);      
+      }; 
 
   return (
     <ThemeProvider theme={theme}>
@@ -73,49 +81,50 @@ export default function ParentPage() {
 
         <Typography variant="h4" color="secondary" component={'span'} >Your childminder needs</Typography>   
         <div>
-        <FormControl className={classes.formControl}>
+        {/* <FormControl className={classes.formControl}> */}
+        <form 
+              className={classes.formControl}
+            //   onSubmit={handleSubmitSearch} 
+            >
             <InputLabel shrink id="category-label"> Category </InputLabel>
             <Select
                 labelId="category-label"
                 label="Category"
                 id="category"
                 value={category}
-                onSelect={handleChangeCategory}
+                onChange={handleChangeCategory}
                 className={classes.selectEmpty}
                 placeholer="Category"
                 required
             >
-                <option value="" disabled>Select a category</option>
-                <option value="Full-time">Full-time</option>
-                <option value="Part-time">Part-time</option>
-                <option value="Flexible">Flexible</option>
-                <option value="Short term">Short term</option>
-                <option value="Long term">Long term</option>
+                <MenuItem value="" disabled>Select a category</MenuItem>
+                <MenuItem value="Full-time">Full-time</MenuItem>
+                <MenuItem value="Part-time">Part-time</MenuItem>
+                <MenuItem value="Flexible">Flexible</MenuItem>
+                <MenuItem value="Short term">Short term</MenuItem>
+                <MenuItem value="Long term">Long term</MenuItem>
             </Select>      
-        </FormControl>
+        {/* </FormControl> */}
         
-        <FormControl className={classes.formControl}>
-            <InputLabel shrink id="category-label"> Category </InputLabel>
+        {/* <FormControl className={classes.formControl}> */}
+            <InputLabel shrink id="fulltime-day-label"> Full-time day </InputLabel>
             <Select
-                labelId="category-label"
-                label="Category"
-                id="category"
-                value={category}
-                onSelect={handleChangeCategory}
+                labelId="fulltime-day-label"
+                label="fulltime-day"
+                id="fulltime-day"
+                value={fullTimeDay}
+                onChange={handleChangeFullTime}
                 className={classes.selectEmpty}
-                placeholer="Category"
-                required
             >
-                <option value="" disabled>Select a category</option>
-                <option value="Full-time">Full-time</option>
-                <option value="Part-time">Part-time</option>
-                <option value="Flexible">Flexible</option>
-                <option value="Short term">Short term</option>
-                <option value="Long term">Long term</option>
+                <MenuItem value="" disabled>Select an option</MenuItem>
+                <MenuItem value="Mon-Fri 8-6">Mon-Fri 8-6</MenuItem>
+                <MenuItem value="Other">Other</MenuItem>
             </Select>      
-            <FormHelperText>If full-time, please provide </FormHelperText>
-        </FormControl>
-       
+            <FormHelperText>If Full-time, please provide the above</FormHelperText>
+        {/* </FormControl> */}
+
+        <CheckDays />
+        </form>  
         </div>
 
 
@@ -178,10 +187,10 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
     marginRight: theme.spacing(2),
-    width: 120
+    width: 200
   },
   inputLabel: {
-    width: 120
+    width: 200
   },
   table: {
     minWidth: 650,

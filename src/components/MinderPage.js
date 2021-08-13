@@ -97,12 +97,12 @@ export default function ParentPage() {
                 placeholer="Category"
                 required
             >
-                <option value="" disabled>Select a category</option>
-                <option value="Full-time">Full-time</option>
-                <option value="Part-time">Part-time</option>
-                <option value="Flexible">Flexible</option>
-                <option value="Short term">Short term</option>
-                <option value="Long term">Long term</option>
+                <MenuItem value="" disabled>Select a category</MenuItem>
+                <MenuItem value="Full-time">Full-time</MenuItem>
+                <MenuItem value="Part-time">Part-time</MenuItem>
+                <MenuItem value="Flexible">Flexible</MenuItem>
+                <MenuItem value="Short term">Short term</MenuItem>
+                <MenuItem value="Long term">Long term</MenuItem>
             </Select>      
         </FormControl>
         </div>
