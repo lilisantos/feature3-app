@@ -17,7 +17,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header />
-        <div className="container mt-2" style={{ marginTop: 60 }}>
+        <div className="container mt-2" style={{ marginTop: 100 }}>
 
           {/* Routes for menu */}
           <Switch>           

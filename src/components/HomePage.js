@@ -13,7 +13,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import DataUsageIcon from '@material-ui/icons/DataUsage';
 
-
 export default function HomePage(){  
   const classes = useStyles();
   return (    
@@ -47,28 +46,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems:'center',
     justifyContent:'center',
     marginBottom: 100,
-
-
 },
   logo: {
     width: 150,
     paddingLeft: 20,
     marginTop: 50,
     paddingTop: 100
-  },
-  
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginTop: 10,
-    marginBottom: 15,
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-  linkText: {
-    textDecoration: `none`,
-    color: `black`
-},
+  }, 
 }));

@@ -22,6 +22,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 
 //send request to back-end API to update availability
@@ -73,34 +78,34 @@ export default function ParentPage() {
   return (
     <ThemeProvider theme={theme}>
       <Container>
+      <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb" style={{ marginBottom: 50 }}>
+        <Link color="inherit" href="/">Home</Link>         
+        <Typography color="textPrimary">Minder Page</Typography>
+      </Breadcrumbs>
+
         <Typography variant="h4" color="secondary" component={'span'}>Your availability </Typography>   
-          <Box justifyContent="center">  
-            {/* Form to execute search for a food */}
-            <form              
-             className={classes.formControl}
-            //  onSubmit={handleSubmit}
-             error={error} 
-            >
-              <InputLabel id="category-label">Category:</InputLabel>
-              <Select
+        <div>
+        <FormControl className={classes.formControl}>
+            <InputLabel shrink id="category-label"> Category </InputLabel>
+            <Select
                 labelId="category-label"
+                label="Category"
                 id="category"
                 value={category}
-                onChange={handleChangeCategory}
+                onSelect={handleChangeCategory}
                 className={classes.selectEmpty}
+                placeholer="Category"
                 required
-              >
-                <MenuItem value="" disabled>Select a category</MenuItem>
-                <MenuItem value="Full-time">Full-time</MenuItem>
-                <MenuItem value="Part-time">Part-time</MenuItem>
-                <MenuItem value="Flexible">Flexible</MenuItem>
-                <MenuItem value="Short term">Short term</MenuItem>
-                <MenuItem value="Long term">Long term</MenuItem>
-              </Select>            
-              
-           
-            </form>             
-         </Box>
+            >
+                <option value="" disabled>Select a category</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Flexible">Flexible</option>
+                <option value="Short term">Short term</option>
+                <option value="Long term">Long term</option>
+            </Select>      
+        </FormControl>
+        </div>
       </Container>
     </ThemeProvider>   
   );

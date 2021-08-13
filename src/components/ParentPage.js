@@ -22,6 +22,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Link from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 
 //send request to back-end API to update availability
@@ -41,66 +50,100 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 export default function ParentPage() { 
   const classes = useStyles();
-  const [selectedIndex, setSelectedIndex] = useState();
-
-  //Variables to setup data for POST request
+  
     let [category, setCategory] = useState(' ');  
     const [details, setDetails] = useState(' ');
 
-
-    //Validation and error checking variables
     const [error, setError] = useState(false);
     const [helperText, setHelperText] = useState('');
     let [isSubmitted, setIsSubmitted] = useState();
-
+   
     // Handle change on select field
     const handleChangeCategory = (event) => {
-      setCategory(event.target.value);     
+      setCategory(event.target.value);      
     }; 
-
-//    const handleSubmit = async e => {
-//     e.preventDefault();
-
-//    try{
-//      //Calls function to post meal
-//     const responseMeal = await sendMeal({type, food, calories, carbs, protein, fat});  
-//     setIsSubmitted(true); 
-//    }catch(ex){
-//     console.log("response error:" + ex); 
-//    }
-//   }
 
   return (
     <ThemeProvider theme={theme}>
       <Container>
-        <Typography variant="h4" color="secondary" component={'span'}>Your childminder needs</Typography>   
-          <Box justifyContent="center">  
-            {/* Form to execute search for a food */}
-            <form              
-             className={classes.formControl}
-            //  onSubmit={handleSubmit}
-             error={error} 
-            >
-              <InputLabel id="category-label">Category:</InputLabel>
-              <Select
+        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb" style={{ marginBottom: 50 }}>
+            <Link color="inherit" href="/"> Home</Link>        
+            <Typography color="textPrimary">Parent Page</Typography>
+        </Breadcrumbs>
+
+        <Typography variant="h4" color="secondary" component={'span'} >Your childminder needs</Typography>   
+        <div>
+        <FormControl className={classes.formControl}>
+            <InputLabel shrink id="category-label"> Category </InputLabel>
+            <Select
                 labelId="category-label"
+                label="Category"
                 id="category"
                 value={category}
-                onChange={handleChangeCategory}
+                onSelect={handleChangeCategory}
                 className={classes.selectEmpty}
+                placeholer="Category"
                 required
-              >
-                <MenuItem value="" disabled>Select a category</MenuItem>
-                <MenuItem value="Full-time">Full-time</MenuItem>
-                <MenuItem value="Part-time">Part-time</MenuItem>
-                <MenuItem value="Flexible">Flexible</MenuItem>
-                <MenuItem value="Short term">Short term</MenuItem>
-                <MenuItem value="Long term">Long term</MenuItem>
-              </Select>            
-              
-           
-            </form>             
-         </Box>
+            >
+                <option value="" disabled>Select a category</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Flexible">Flexible</option>
+                <option value="Short term">Short term</option>
+                <option value="Long term">Long term</option>
+            </Select>      
+        </FormControl>
+        
+        <FormControl className={classes.formControl}>
+            <InputLabel shrink id="category-label"> Category </InputLabel>
+            <Select
+                labelId="category-label"
+                label="Category"
+                id="category"
+                value={category}
+                onSelect={handleChangeCategory}
+                className={classes.selectEmpty}
+                placeholer="Category"
+                required
+            >
+                <option value="" disabled>Select a category</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Flexible">Flexible</option>
+                <option value="Short term">Short term</option>
+                <option value="Long term">Long term</option>
+            </Select>      
+            <FormHelperText>If full-time, please provide </FormHelperText>
+        </FormControl>
+       
+        </div>
+
+
+        <Box justifyContent="center">       
+                
+            <form              
+                className={classes.formControl}
+                // onSubmit={handleSubmit}
+                error={error} 
+                >
+               
+     
+{/*         <TextField
+                id="details"
+                label="Details"
+                maxRows={4}
+                value={value}
+                onChange={handleChangeTextField}
+                rows={4}
+                            
+            /> */}
+
+
+
+    
+        </form>       
+         
+        </Box> 
       </Container>
     </ThemeProvider>   
   );
@@ -129,7 +172,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(2),
-    minWidth: 220,  
+    minWidth: 300,  
     width: '100%',
   },
   selectEmpty: {
@@ -137,9 +180,14 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     width: 120
   },
+  inputLabel: {
+    width: 120
+  },
   table: {
     minWidth: 650,
     textTransform: 'capitalize',
   },
 
+
 }));
+
