@@ -7,8 +7,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import {
-  createMuiTheme, 
-  ThemeProvider, } from '@material-ui/core';  
+  createTheme, 
+  ThemeProvider,
+Typography } from '@material-ui/core';  
 import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,8 +17,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   formControl: {
-    margin: theme.spacing(3),
+    paddingTop: 16,     
   },
+  formGroup: {
+    paddingTop: 16, 
+  },
+  FormControlLabel: {
+    fontSize: '12px'
+  }
 }));
 
 export default function CheckDays() {
@@ -46,9 +53,9 @@ export default function CheckDays() {
 
   return (
     <ThemeProvider theme={theme}>
-    <div className={classes.root}>     
+  
       <FormControl component="fieldset" className={classes.formControl}>
-      <FormLabel component="legend">Pick the Days</FormLabel>
+      <Typography>Pick the days of the week</Typography>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={monday} onChange={handleChange} name="monday" />}
@@ -81,12 +88,12 @@ export default function CheckDays() {
         </FormGroup>
        
       </FormControl>
-    </div>
+  
     </ThemeProvider>   
   );
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
       primary: {
         main: "#ffffff"
@@ -95,5 +102,19 @@ const theme = createMuiTheme({
         main: "#00c5c0"
       }
     },
-backgroundColor: "#00c5c0"
+backgroundColor: "#00c5c0",
+typography: {
+  fontFamily: [
+    '"Helvetica Neue"',
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',      
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+},
 });

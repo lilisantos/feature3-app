@@ -1,26 +1,23 @@
 import React, {useState, useRef } from 'react';
 import { 
-  createMuiTheme, 
+  createTheme, 
   ThemeProvider, 
   Container, 
   Typography,
-  IconButton, 
-  Button,
-Box} from '@material-ui/core';  
+  Box,
+  Grid
+ } from '@material-ui/core';  
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import DataUsageIcon from '@material-ui/icons/DataUsage';
+
 
 export default function HomePage(){  
   const classes = useStyles();
   return (    
     <ThemeProvider theme={theme}>      
-      <Container justifyContent='center' className={classes.root}>      
-        <Box justifyContent="center" display="flex" >
-          <Typography variant="h2" color="secondary" spacing={2} >Welcome to 
-            <img src="/logo oogo.png" alt="logo" className={classes.logo} /></Typography>
+      <Container justifyContent='center' >      
+        <Box justifyContent="center" display="flex" className={classes.root}>                   
+          <Typography variant="h2" color="secondary" className={classes.title}>Welcome to </Typography>           
+          <img src="/logo oogo.png" alt="logo" className={classes.logo} />           
         </Box>
       </Container>
     </ThemeProvider>
@@ -28,7 +25,7 @@ export default function HomePage(){
   );
 }
 //Theme styles
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#ffffff"
@@ -36,21 +33,40 @@ const theme = createMuiTheme({
     secondary: {
       main: "#00c5c0"
     }
-  }
+  },
+  typography: {
+    fontFamily: [
+      '"Helvetica Neue"',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',      
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+
+  },
 });
 
 const useStyles = makeStyles((theme) => ({
   root:{
     flex:1,
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center',
-    marginBottom: 100,
+    flexDirection:'row',   
+    marginBottom: 100,    
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 100
 },
   logo: {
     width: 150,
     paddingLeft: 20,
-    marginTop: 50,
-    paddingTop: 100
+    marginTop: 20,
+    justifyContent: "center",
   }, 
+  title: {
+    fontWeight: 'bold'
+  }
 }));

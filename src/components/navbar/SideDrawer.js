@@ -2,7 +2,7 @@ import * as React from "react"
 import { 
     IconButton,  
     Drawer, 
-    createMuiTheme, 
+    createTheme, 
     ThemeProvider  } from "@material-ui/core"
 import { Menu } from "@material-ui/icons"
 import { useState } from "react"
@@ -79,12 +79,12 @@ const useStyles = makeStyles({
   },
   linkText: {
     textDecoration: `none`,
-    textTransform: `uppercase`,
-    color: `black`,
+    textTransform: `initial`,
+    color: "#00c5c0",
   },
 });
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#ffffff"
@@ -92,5 +92,19 @@ const theme = createMuiTheme({
     secondary: {
       main: "#00c5c0"
     }
-  }
+  },
+  typography: {
+    fontFamily: [
+      '"Helvetica Neue"',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',      
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
 });  

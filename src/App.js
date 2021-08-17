@@ -1,5 +1,5 @@
 import React from 'react';
-import { createMuiTheme, ThemeProvider} from '@material-ui/core';
+import { createTheme, ThemeProvider} from '@material-ui/core';
 import Header from './components/navbar/Header';
 import {
   BrowserRouter,
@@ -27,7 +27,7 @@ export default function App() {
             <Route path="/parent">
               <Parent />
             </Route>
-            <Route path="/Minder">
+            <Route path="/minder">
               <Minder />
             </Route>
           </Switch>
@@ -38,7 +38,7 @@ export default function App() {
   );
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#ffffff"
@@ -46,6 +46,20 @@ const theme = createMuiTheme({
     secondary: {
       main: "#00c5c0"
     }
-  }
-});
+  },
+  typography: {
+    fontFamily: [
+      '"Helvetica Neue"',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',      
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+ });
 
