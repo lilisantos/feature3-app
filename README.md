@@ -2,6 +2,8 @@
 
 This module was developed as part of the hiring process for the Internship Program at &Ouml;ogo.
 
+- Demo can be accessed on the link https://feature3-app.herokuapp.com/
+
 ## Technologies applied
 - ReactJS - version 17.0.2
 - MaterialUI - version 4.12.3
