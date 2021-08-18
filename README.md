@@ -13,3 +13,6 @@ This module was developed as part of the hiring process for the Internship Progr
 2. Move to the appropriate directory: cd feature3-app.
 3. Run npm install to install dependencies.
 4. Run npm start, it will open the browser when ready.
+
+## Contact
+Created by @lilisantos - feel free to contact me!
