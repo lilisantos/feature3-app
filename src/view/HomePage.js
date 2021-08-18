@@ -1,14 +1,12 @@
-import React, {useState, useRef } from 'react';
+import React from 'react';
 import { 
   createTheme, 
   ThemeProvider, 
   Container, 
   Typography,
-  Box,
-  Grid
+  Box
  } from '@material-ui/core';  
 import { makeStyles } from '@material-ui/core/styles';
-
 
 export default function HomePage(){  
   const classes = useStyles();
@@ -24,6 +22,7 @@ export default function HomePage(){
    
   );
 }
+
 //Theme styles
 const theme = createTheme({
   palette: {

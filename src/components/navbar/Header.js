@@ -1,19 +1,13 @@
-/* Navbar based on the tutorial available at
-* https://ansonlowzf.com/how-to-build-a-material-ui-navbar/
-*/
 import * as React from "react"
 import { 
     IconButton,     
     Container,
     Hidden, 
     Toolbar, 
-    AppBar, 
-    Fab, 
+    AppBar,
     createTheme, 
     ThemeProvider, 
-    Typography
      } from "@material-ui/core"
-import { KeyboardArrowUp } from "@material-ui/icons"
 import { makeStyles } from "@material-ui/core/styles"
 import HideOnScroll from "./HideOnScroll";
 import SideDrawer from "./SideDrawer"
@@ -53,7 +47,7 @@ const navLinks = [
                                     className={classes.navDisplayFlex} 
                                     >
                                     {navLinks.map(({ title, path }) => (
-                                        <a href={path} key={title} className={classes.linkText} style={{fontColor:" #00c5c0"}, {fontFamily: '"Helvetica Neue"'}}>
+                                        <a href={path} key={title} className={classes.linkText}>
                                         <ListItem button>
                                             <ListItemText secondary={title} />
                                         </ListItem>

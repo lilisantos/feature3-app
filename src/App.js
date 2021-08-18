@@ -6,9 +6,9 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Parent from './components/ParentPage'
-import Minder from './components/MinderPage'
-import Home from './components/HomePage'
+import Parent from './view/ParentPage'
+import Minder from './view/MinderPage'
+import Home from './view/HomePage'
 
 export default function App() {  
   

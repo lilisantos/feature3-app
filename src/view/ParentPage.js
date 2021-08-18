@@ -5,45 +5,24 @@ import {
   Container, 
   Typography,
   Box } from '@material-ui/core';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
-import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import CheckDays from "../components/CheckDays";
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
 import CalendarTemplate from 'availability-calendar-react';
 import Alert from '@material-ui/lab/Alert';
-
 
 //Send request to back-end API to update availability
 async function sendAv({personId, category, fullTimeDay, availability, details}){ 
   
-//Post info to backend API
-  //  fetch('https://feature3-api.herokuapp.com/availability/add', {
-    fetch('http://localhost:8005/availabilityParent/add', {
+  //Post info to API
+   fetch('https://feature3-api.herokuapp.com/availabilityParent/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,9 +37,11 @@ async function sendAv({personId, category, fullTimeDay, availability, details}){
 }
 
 export default function ParentPage() { 
+  // Access to custom styles
   const classes = useStyles();
 
   const [availability, setAvailability] = useState([]);
+  // Custom styles for calendar component
   const Calendar = CalendarTemplate({
     availability,
     setAvailability,
@@ -73,16 +54,14 @@ export default function ParentPage() {
     endTime: "20:00"
   })
   
-   // Person ID number set for prototyping purposes
-   const [personId, setPersonId] = useState('parent001');
+   // Person ID number set default only for prototyping purposes //
+   const personId = useState('parent001');
 
     let [category, setCategory] = useState(' ');  
     const [details, setDetails] = useState(' ');
     let [fullTimeDay, setFullTimeDay] = useState(' ');  
     let [isFullTime, setIsFullTime] = useState();  
-
-    const [error, setError] = useState(false);
-    const [helperText, setHelperText] = useState('');
+     //Validation variable
     let [isSubmitted, setIsSubmitted] = useState();
    
     // Handle change on category field
@@ -97,33 +76,28 @@ export default function ParentPage() {
       }      
     }; 
 
-    console.log("category: " + category);
-    console.log("isfulltime: " + isFullTime);
-
-     // Handle change on select field
-     const handleChangeFullTime = (event) => {
-        setFullTimeDay(event.target.value);       
-      }; 
+    // Handle change on full-time hours field
+    const handleChangeFullTime = (event) => {
+      setFullTimeDay(event.target.value);       
+    }; 
       
-     // Handle change on select field
-     const handleChangeDetails = (event) => {
+    // Handle change on details textarea field
+    const handleChangeDetails = (event) => {
       setDetails(event.target.value);       
     };
 
-      const handleSubmit = async e => {
-        e.preventDefault();
+    //Submit data 
+    const handleSubmit = async e => {
+      e.preventDefault();
 
-        console.log("Post ava" + personId + " - "+ category + " - " + fullTimeDay + " - "+ JSON.stringify(availability) + " - "+ details); 
-
-        try{
-          //Calls function to post availability
-          const responseAv = await sendAv({personId, category, fullTimeDay, availability, details});  
-          setIsSubmitted(true); 
-        }catch(ex){
-          console.log("Send availability response error:" + ex); 
-        }
+      try{
+        //Calls function to post availability
+        const responseAv = await sendAv({personId, category, fullTimeDay, availability, details});  
+        setIsSubmitted(true); // Variable used to display success message
+      }catch(ex){
+        console.log("Send availability response error:" + ex); 
       }
-
+    }
 
   return (
     <ThemeProvider theme={theme}>
@@ -156,9 +130,11 @@ export default function ParentPage() {
                 <MenuItem value="Short term">Short term</MenuItem>
                 <MenuItem value="Long term">Long term</MenuItem>
             </Select>      
-        
-        
-            {isFullTime ?                         
+
+            {/* Checks if the user selected "Full-time" as category */}
+            {isFullTime ?    
+
+              // If so, displays confirmation of full-time hours
               <div>
                 <Typography className={classes.label} color="secondary">Full-time hours</Typography>
                 <Select
@@ -169,15 +145,18 @@ export default function ParentPage() {
                     defaultValue={" "}
                     onChange={handleChangeFullTime}
                     className={classes.selectEmpty}
+                    
                 >
-                    <MenuItem value=" " disabled>Select an option</MenuItem>
-                    <MenuItem value="Mon-Fri 8-6">Mon-Fri 8-6</MenuItem>
-                    <MenuItem value="Other">Other</MenuItem>
+                  <MenuItem value=" " disabled>Select an option</MenuItem>
+                  <MenuItem value="Mon-Fri 8-6">Mon-Fri 8-6</MenuItem>
+                  <MenuItem value="Other">Other</MenuItem>
                 </Select>      
                 <FormHelperText>Please confirm full-time hours</FormHelperText>
               </div>
               
-            : isFullTime == false ?
+            // If "Part-time" or "Flexible" options were selected, displays calendar so the user can choose
+            // days and times
+            : isFullTime === false ?
               <Box component="span" m={1}>     
                 <Typography className={classes.label} color="secondary">Pick days and times</Typography>       
                 <Calendar />
@@ -249,8 +228,6 @@ const theme = createTheme({
   },
  
 });
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {

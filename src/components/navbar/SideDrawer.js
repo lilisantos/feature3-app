@@ -37,7 +37,7 @@ const SideDrawer = ({navLinks}) => {
    
      <List component="nav">
       {navLinks.map(({ title, path }) => (
-        <a href={path} key={title} className={classes.linkText} /*Add this*/>
+        <a href={path} key={title} className={classes.linkText} >
           <ListItem button>
             <ListItemText primary={title} />
           </ListItem>
