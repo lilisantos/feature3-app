@@ -4,9 +4,7 @@ This module was developed as part of the hiring process for the Internship Progr
 
 ## Technologies applied
 - ReactJS - version 17.0.2
-- NodeJS - version 14.15.0
-- MongoDB - version 4.4.8
-- ExpressJS - version 4.17.1
+- MaterialUI - version 4.12.3
 
 ## Setup
 1. Clone this repo using git clone https://github.com/lilisantos/feature3-app/
